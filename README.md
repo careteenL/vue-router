@@ -55,3 +55,27 @@
 
 ## 示例
 
+## 源码解析
+
+- 路由注册，挂载到`Vue`实例上
+- `VueRouter`对象
+  - 初始化
+  - 提供静态方法`install`
+- `Matcher`
+  - 通过`createMatcher`提供`pathList/pathMap/nameMap`
+    - `pathMap`存放路径和组件相关信息
+  - `match`:根据新老路径匹配为`transitionTo`做铺垫
+- `transitionTo`路径切换
+  - 路由导航
+    - 同步执行异步队列 （实现思路和`koa`中间件原理一样）
+  - `url`变化
+  - 组件
+    - `router-view`
+      - 根据路由定义的层级关系确定`router-view`渲染的组件
+      - 用`depth`确定嵌套的深度
+    - `router-link`
+- 总结
+  - 路由切换过程
+    - 先执行一系列导航守卫钩子函数
+    - 更改url
+    - 渲染对应的组件
